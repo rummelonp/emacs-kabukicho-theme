@@ -1,4 +1,4 @@
-# Kabukicho Theme for [Emacs](https://www.gnu.org/software/emacs/)
+# Kabukichō Theme for [Emacs](https://www.gnu.org/software/emacs/)
 
 > A dark theme for [Emacs](https://www.gnu.org/software/emacs/)
 > 
