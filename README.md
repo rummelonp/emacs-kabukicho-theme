@@ -7,6 +7,8 @@
 
 ![Screenshot](./screenshot.png)
 
+Font in the screenshot is [HackGen](https://github.com/yuru7/HackGen)
+
 ## Install
 
 ### Install using straight.el
