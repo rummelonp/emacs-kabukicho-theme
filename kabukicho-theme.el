@@ -80,17 +80,17 @@ read it before opening a new issue about your will.")
 
 ;; Assigment form: VARIABLE COLOR [256-COLOR [TTY-COLOR]]
 (let ((colors '(;; Upstream theme color
-                (kabukicho-bg      "#282a36" "unspecified-bg" "unspecified-bg") ; official background
+                (kabukicho-bg      "#1f1529" "unspecified-bg" "unspecified-bg") ; official background
                 (kabukicho-fg      "#f8f8f2" "#ffffff" "brightwhite") ; official foreground
                 (kabukicho-current "#44475a" "#303030" "brightblack") ; official current-line/selection
-                (kabukicho-comment "#6272a4" "#5f5faf" "blue")        ; official comment
-                (kabukicho-cyan    "#8be9fd" "#87d7ff" "brightcyan")  ; official cyan
-                (kabukicho-green   "#50fa7b" "#5fff87" "green")       ; official green
-                (kabukicho-orange  "#ffb86c" "#ffaf5f" "brightred")   ; official orange
-                (kabukicho-pink    "#ff79c6" "#ff87d7" "magenta")     ; official pink
-                (kabukicho-purple  "#bd93f9" "#af87ff" "brightmagenta") ; official purple
-                (kabukicho-red     "#ff5555" "#ff8787" "red")         ; official red
-                (kabukicho-yellow  "#f1fa8c" "#ffff87" "yellow")      ; official yellow
+                (kabukicho-comment "#6071cc" "#3a4db5" "blue")        ; official comment
+                (kabukicho-cyan    "#61e2ff" "#1ad5ff" "brightcyan")  ; official cyan
+                (kabukicho-green   "#54e484" "#22d75e" "green")       ; official green
+                (kabukicho-orange  "#e0b401" "#b39000" "brightred")   ; official orange
+                (kabukicho-pink    "#f92aad" "#e20691" "magenta")     ; official pink
+                (kabukicho-purple  "#b141f1" "#9710e4" "brightmagenta") ; official purple
+                (kabukicho-red     "#ff5555" "#fe1111" "red")         ; official red
+                (kabukicho-yellow  "#e0b401" "#b39000" "yellow")      ; official yellow
                 ;; Other colors
                 (bg2             "#373844" "#121212" "brightblack")
                 (bg3             "#464752" "#262626" "brightblack")
@@ -98,7 +98,7 @@ read it before opening a new issue about your will.")
                 (fg2             "#e2e2dc" "#e4e4e4" "brightwhite")
                 (fg3             "#ccccc7" "#c6c6c6" "white")
                 (fg4             "#b6b6b2" "#b2b2b2" "white")
-                (other-blue      "#0189cc" "#0087ff" "brightblue")))
+                (other-blue      "#495495" "#3a4377" "brightblue")))
       (faces '(;; default / basic faces
                (cursor :background ,fg3)
                (default :background ,kabukicho-bg :foreground ,kabukicho-fg)
@@ -133,7 +133,7 @@ read it before opening a new issue about your will.")
                (vertical-border :foreground ,bg2)
                (warning :foreground ,kabukicho-orange)
                ;; syntax / font-lock
-               (font-lock-builtin-face :foreground ,kabukicho-cyan :slant italic)
+               (font-lock-builtin-face :foreground ,kabukicho-cyan :slant normal)
                (font-lock-comment-face :inherit shadow)
                (font-lock-comment-delimiter-face :inherit shadow)
                (font-lock-constant-face :foreground ,kabukicho-purple)
@@ -790,15 +790,20 @@ read it before opening a new issue about your will.")
                (undo-tree-visualizer-unmodified-face :foreground ,kabukicho-fg)
                ;; web-mode
                (web-mode-builtin-face :inherit font-lock-builtin-face)
+               (web-mode-block-delimiter-face :foreground ,kabukicho-cyan)
                (web-mode-comment-face :inherit font-lock-comment-face)
                (web-mode-constant-face :inherit font-lock-constant-face)
-               (web-mode-css-property-name-face :inherit font-lock-constant-face)
+               (web-mode-css-property-name-face :foreground ,kabukicho-pink)
+               (web-mode-css-selector-face :foreground ,kabukicho-green)
                (web-mode-doctype-face :inherit font-lock-comment-face)
                (web-mode-function-name-face :inherit font-lock-function-name-face)
-               (web-mode-html-attr-name-face :foreground ,kabukicho-purple)
-               (web-mode-html-attr-value-face :foreground ,kabukicho-green)
-               (web-mode-html-tag-face :foreground ,kabukicho-pink :weight bold)
+               (web-mode-html-attr-equal-face :foreground ,kabukicho-fg)
+               (web-mode-html-attr-name-face :foreground ,kabukicho-pink)
+               (web-mode-html-attr-value-face :foreground ,kabukicho-purple)
+               (web-mode-html-tag-bracket-face :foreground ,kabukicho-cyan)
+               (web-mode-html-tag-face :foreground ,kabukicho-orange :weight bold)
                (web-mode-keyword-face :foreground ,kabukicho-pink)
+               (web-mode-preprocessor-face :foreground ,kabukicho-pink)
                (web-mode-string-face :foreground ,kabukicho-yellow)
                (web-mode-type-face :inherit font-lock-type-face)
                (web-mode-warning-face :inherit font-lock-warning-face)
