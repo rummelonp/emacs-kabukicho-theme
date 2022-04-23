@@ -1,20 +1,32 @@
 ;;; kabukicho-theme.el --- Kabukicho Theme
 
-;; Copyright 2015-present, All rights reserved
+;; Copyright 2015-2022 Étienne Deparis <etienne@depar.is>
+;; Copyright 2022-present Kazuya Takeshima <mail@mitukiii.jp>
 ;;
 ;; Code licensed under the MIT license
 
-;; Maintainer: Étienne Deparis <etienne@depar.is>
-;; Author: film42
-;; Version: 1.7.0
-;; Package-Requires: ((emacs "24.3"))
-;; URL: https://github.com/dracula/emacs
+;; This is a fork of dracula wrote by film42 and many contributors
+
+;; Authors of dracula: film42
+;;                     Étienne Deparis <etienne@depar.is>
+
+;; Author: Kazuya Takeshima <mail@mitukiii.jp>
+;; Version: 1.0.0
+;; Package-Requires: ((emacs "25.1"))
+;; URL: https://github.com/mitukiii/emacs-kabukicho-theme
 
 ;;; Commentary:
 
-;; A dark color theme available for a number of editors.
-;; This theme tries as much as possible to follow the consensual
-;; specification (see URL `https://spec.draculatheme.com/').
+;; A dark theme for Emacs
+;;
+;; The code is based on dracula
+;; The theme is based on kabukicho-vscode, merged with
+;; synthwave-x-fluoromachine
+;;
+;; See url
+;; https://github.com/dracula/emacs
+;; https://github.com/victoriadrake/kabukicho-vscode
+;; https://github.com/webrender/synthwave-x-fluoromachine
 
 ;;; Code:
 (deftheme kabukicho)
