@@ -9,9 +9,7 @@
 
 ## Install
 
-### [Emacs](https://www.gnu.org/software/emacs/)
-
-#### Install using straight.el
+### Install using straight.el
 
 To load a theme add the following to your init.el
 
@@ -20,7 +18,7 @@ To load a theme add the following to your init.el
        :type git :host github :repo "mitukiii/emacs-kabukicho-theme"))
     (load-theme 'kabukicho t)
 
-#### Install manually
+### Install manually
 
 Add the emacs theme files to `~/.emacs.d/themes`.  
 To load a theme add the following to your init.el
