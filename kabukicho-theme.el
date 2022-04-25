@@ -92,17 +92,17 @@ read it before opening a new issue about your will.")
 
 ;; Assigment form: VARIABLE COLOR [256-COLOR [TTY-COLOR]]
 (let ((colors '(;; Upstream theme color
-                (kabukicho-bg      "#1f1529" "unspecified-bg" "unspecified-bg") ; official background
-                (kabukicho-fg      "#f8f8f2" "#ffffff" "brightwhite") ; official foreground
-                (kabukicho-current "#44475a" "#303030" "brightblack") ; official current-line/selection
-                (kabukicho-comment "#6071cc" "#3a4db5" "blue")        ; official comment
-                (kabukicho-cyan    "#61e2ff" "#1ad5ff" "brightcyan")  ; official cyan
-                (kabukicho-green   "#54e484" "#22d75e" "green")       ; official green
-                (kabukicho-orange  "#e0b401" "#b39000" "brightred")   ; official orange
-                (kabukicho-pink    "#f92aad" "#e20691" "magenta")     ; official pink
-                (kabukicho-purple  "#b141f1" "#9710e4" "brightmagenta") ; official purple
-                (kabukicho-red     "#ff5555" "#fe1111" "red")         ; official red
-                (kabukicho-yellow  "#e0b401" "#b39000" "yellow")      ; official yellow
+                (kabukicho-bg      "#1f1529" "unspecified-bg" "unspecified-bg")
+                (kabukicho-fg      "#f8f8f2" "#ffffff" "brightwhite")
+                (kabukicho-current "#44475a" "#303030" "brightblack")
+                (kabukicho-comment "#6071cc" "#3a4db5" "blue")
+                (kabukicho-cyan    "#61e2ff" "#1ad5ff" "brightcyan")
+                (kabukicho-green   "#54e484" "#22d75e" "green")
+                (kabukicho-orange  "#e0b401" "#b39000" "brightred")
+                (kabukicho-pink    "#f92aad" "#e20691" "magenta")
+                (kabukicho-purple  "#b141f1" "#9710e4" "brightmagenta")
+                (kabukicho-red     "#ff5555" "#fe1111" "red")
+                (kabukicho-yellow  "#e0b401" "#b39000" "yellow")
                 ;; Other colors
                 (bg2             "#373844" "#121212" "brightblack")
                 (bg3             "#464752" "#262626" "brightblack")
