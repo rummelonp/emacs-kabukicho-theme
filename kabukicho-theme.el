@@ -102,7 +102,7 @@ read it before opening a new issue about your will.")
                 (kabukicho-pink    "#f92aad" "#e20691" "magenta")
                 (kabukicho-purple  "#b141f1" "#9710e4" "brightmagenta")
                 (kabukicho-red     "#ff5555" "#fe1111" "red")
-                (kabukicho-yellow  "#e0b401" "#b39000" "yellow")
+                (kabukicho-yellow  "#f4ff81" "#b39000" "yellow")
                 ;; Other colors
                 (bg2             "#373844" "#121212" "brightblack")
                 (bg3             "#464752" "#262626" "brightblack")
