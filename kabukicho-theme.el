@@ -159,7 +159,7 @@ read it before opening a new issue about your will.")
                (font-lock-regexp-grouping-construct :foreground ,kabukicho-purple)
                (font-lock-string-face :foreground ,kabukicho-yellow)
                (font-lock-type-face :inherit font-lock-builtin-face)
-               (font-lock-variable-name-face :foreground ,kabukicho-fg :weight bold)
+               (font-lock-variable-name-face :foreground ,kabukicho-green :weight bold)
                (font-lock-warning-face :inherit warning :background ,bg2)
                ;; auto-complete
                (ac-completion-face :underline t :foreground ,kabukicho-pink)
