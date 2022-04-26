@@ -11,7 +11,7 @@
 ;;                     Étienne Deparis <etienne@depar.is>
 
 ;; Author: Kazuya Takeshima <mail@mitukiii.jp>
-;; Version: 1.1.0
+;; Version: 1.2.0
 ;; Package-Requires: ((emacs "25.1"))
 ;; URL: https://github.com/mitukiii/emacs-kabukicho-theme
 
