@@ -17,7 +17,7 @@ To load a theme add the following to your init.el
 
     (straight-use-package
      '(emacs-kabukicho-theme
-       :type git :host github :repo "mitukiii/emacs-kabukicho-theme"))
+       :type git :host github :repo "rummelonp/emacs-kabukicho-theme"))
     (load-theme 'kabukicho t)
 
 ### Install manually
@@ -34,7 +34,7 @@ Some aspects of this theme are customizable.
 You can change them either by doing `M-x customize-group kabukicho ` or setting one or more of the following values in your Emacs init file.  
 Note that these variables need to be set before `load-theme` is invoked for Kabukicho.
 
-```
+```el
 ;; Don't change the font size for some headings and titles (default t)
 (setq kabukicho-enlarge-headings nil)
 
@@ -42,10 +42,10 @@ Note that these variables need to be set before `load-theme` is invoked for Kabu
 (setq kabukicho-height-title-1 1.25)
 
 ;; Adjust font size of titles level 2 (default 1.1)
-(setq kabukicho-height-title-1 1.15)
+(setq kabukicho-height-title-2 1.15)
 
 ;; Adjust font size of titles level 3 (default 1.0)
-(setq kabukicho-height-title-1 1.05)
+(setq kabukicho-height-title-3 1.05)
 
 ;; Adjust font size of document titles (default 1.44)
 (setq kabukicho-height-doc-title 1.4)

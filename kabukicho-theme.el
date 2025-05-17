@@ -1,27 +1,23 @@
-;;; kabukicho-theme.el --- Kabukicho Theme
+;;; kabukicho-theme.el --- Kabukicho Theme -*- lexical-binding: t; -*-
 
-;; Copyright 2015-2022 Étienne Deparis <etienne@depar.is>
-;; Copyright 2022-present Kazuya Takeshima <mail@mitukiii.jp>
+;; Copyright 2015-present Dracula Theme
+;; Copyright 2022-present Kazuya Takeshima <rummelonp@gmail.com>
 ;;
 ;; Code licensed under the MIT license
 
-;; This is a fork of dracula wrote by film42 and many contributors
-
-;; Authors of dracula: film42
-;;                     Étienne Deparis <etienne@depar.is>
-
-;; Author: Kazuya Takeshima <mail@mitukiii.jp>
+;; Maintainer: Kazuya Takeshima <rummelonp@gmail.com>
+;; Author: film42
 ;; Version: 1.2.0
 ;; Package-Requires: ((emacs "25.1"))
-;; URL: https://github.com/mitukiii/emacs-kabukicho-theme
+;; URL: https://github.com/rummelonp/emacs-kabukicho-theme
 
 ;;; Commentary:
 
 ;; A dark theme for Emacs
 ;;
-;; The code is based on dracula
+;; The code is based on dracula.
 ;; The theme is based on kabukicho-vscode, merged with
-;; synthwave-x-fluoromachine
+;; synthwave-x-fluoromachine.
 ;;
 ;; See url
 ;; https://github.com/dracula/emacs
@@ -46,7 +42,7 @@ The theme has to be reloaded after changing anything in this group."
   :group 'kabukicho)
 
 (defcustom kabukicho-height-title-1 1.3
-  "Font size 100%."
+  "Font size 130%."
   :type 'number
   :group 'kabukicho)
 
@@ -56,7 +52,7 @@ The theme has to be reloaded after changing anything in this group."
   :group 'kabukicho)
 
 (defcustom kabukicho-height-title-3 1.0
-  "Font size 130%."
+  "Font size 100%."
   :type 'number
   :group 'kabukicho)
 
@@ -78,13 +74,13 @@ behavior, the most common one being an ugly blue background on
 terminals, which don't understand 24 bit colors.  To avoid this
 blue background, when using this variable, one can try to add the
 following lines in their config file after having load the
-Dracula theme:
+Kabukicho theme:
 
     (unless (display-graphic-p)
-      (set-face-background 'default \"black\" nil))
+      (set-face-background \\='default \"black\" nil))
 
 There is a lot of discussion behind the 256 colors theme (see URL
-`https://github.com/dracula/emacs/pull/57').  Please take time to
+`https://github.com/kabukicho/emacs/pull/57').  Please take time to
 read it before opening a new issue about your will.")
 
 
@@ -105,12 +101,13 @@ read it before opening a new issue about your will.")
                 (kabukicho-yellow  "#f4ff81" "#ffff87" "yellow")
                 ;; Other colors
                 (bg2             "#373844" "#121212" "brightblack")
-                (bg3             "#464752" "#262626" "brightblack")
-                (bg4             "#565761" "#444444" "brightblack")
+                (bg3             "#565761" "#444444" "brightblack")
                 (fg2             "#e2e2dc" "#e4e4e4" "brightwhite")
                 (fg3             "#ccccc7" "#c6c6c6" "white")
                 (fg4             "#b6b6b2" "#b2b2b2" "white")
-                (other-blue      "#495495" "#5f5faf" "brightblue")))
+                ;;(dark-red        "#880000" "#870000" "red")
+                ;;(dark-green      "#037a22" "#00af00" "green")
+                (dark-blue       "#495495" "#5f5faf" "brightblue")))
       (faces '(;; default / basic faces
                (cursor :background ,fg3)
                (default :background ,kabukicho-bg :foreground ,kabukicho-fg)
@@ -118,15 +115,15 @@ read it before opening a new issue about your will.")
                (error :foreground ,kabukicho-red)
                (ffap :foreground ,fg4)
                (fringe :background ,kabukicho-bg :foreground ,fg4)
-               (header-line :background ,kabukicho-bg)
-               (highlight :foreground ,fg3 :background ,bg3)
-               (hl-line :background ,kabukicho-current :extend t)
+               (header-line :inherit 'mode-line)
+               (highlight :foreground ,fg3 :background ,kabukicho-current)
+               (hl-line :background ,bg2 :extend t)
                (info-quoted-name :foreground ,kabukicho-orange)
                (info-string :foreground ,kabukicho-yellow)
                (lazy-highlight :foreground ,fg2 :background ,bg2)
                (link :foreground ,kabukicho-cyan :underline t)
-               (linum :slant italic :foreground ,bg4 :background ,kabukicho-bg)
-               (line-number :slant italic :foreground ,bg4 :background ,kabukicho-bg)
+               (linum :slant italic :foreground ,bg3 :background ,kabukicho-bg)
+               (line-number :slant italic :foreground ,bg3 :background ,kabukicho-bg)
                (match :background ,kabukicho-yellow :foreground ,kabukicho-bg)
                (menu :background ,kabukicho-current :inverse-video nil
                      ,@(if kabukicho-alternate-mode-line-and-minibuffer
@@ -136,8 +133,18 @@ read it before opening a new issue about your will.")
                 ,@(if kabukicho-alternate-mode-line-and-minibuffer
                       (list :weight 'normal :foreground kabukicho-fg)
                     (list :weight 'bold :foreground kabukicho-pink)))
+               (mode-line :background ,kabukicho-current
+                          :box ,kabukicho-current :inverse-video nil
+                          ,@(if kabukicho-alternate-mode-line-and-minibuffer
+                                (list :foreground fg3)
+                              (list :foreground kabukicho-fg)))
+               (mode-line-inactive
+                :background ,kabukicho-bg :inverse-video nil
+                ,@(if kabukicho-alternate-mode-line-and-minibuffer
+                      (list :foreground kabukicho-comment :box kabukicho-bg)
+                    (list :foreground fg4 :box bg2)))
                (read-multiple-choice-face :inherit completions-first-difference)
-               (region :inherit match :extend t)
+               (region :background ,kabukicho-current :extend nil)
                (shadow :foreground ,kabukicho-comment)
                (success :foreground ,kabukicho-green)
                (tooltip :foreground ,kabukicho-fg :background ,kabukicho-current)
@@ -153,6 +160,8 @@ read it before opening a new issue about your will.")
                (font-lock-function-name-face :foreground ,kabukicho-orange :weight bold)
                (font-lock-keyword-face :foreground ,kabukicho-pink :weight bold)
                (font-lock-negation-char-face :foreground ,kabukicho-cyan)
+               (font-lock-number-face :foreground ,kabukicho-purple)
+               (font-lock-operator-face :foreground ,kabukicho-pink)
                (font-lock-preprocessor-face :foreground ,kabukicho-orange)
                (font-lock-reference-face :inherit font-lock-constant-face) ;; obsolete
                (font-lock-regexp-grouping-backslash :foreground ,kabukicho-cyan)
@@ -163,15 +172,46 @@ read it before opening a new issue about your will.")
                (font-lock-warning-face :inherit warning :background ,bg2)
                ;; auto-complete
                (ac-completion-face :underline t :foreground ,kabukicho-pink)
+               ;; ansi-color
+               (ansi-color-black :foreground ,kabukicho-bg :background ,kabukicho-bg)
+               (ansi-color-bright-black :foreground "black" :background "black")
+               (ansi-color-blue :foreground ,kabukicho-purple :background ,kabukicho-purple)
+               (ansi-color-bright-blue :foreground ,kabukicho-purple
+                                       :background ,kabukicho-purple
+                                       :weight bold)
+               (ansi-color-cyan :foreground ,kabukicho-cyan :background ,kabukicho-cyan)
+               (ansi-color-bright-cyan :foreground ,kabukicho-cyan
+                                       :background ,kabukicho-cyan
+                                       :weight bold)
+               (ansi-color-green :foreground ,kabukicho-green :background ,kabukicho-green)
+               (ansi-color-bright-green :foreground ,kabukicho-green
+                                        :background ,kabukicho-green
+                                        :weight bold)
+               (ansi-color-magenta :foreground ,kabukicho-pink :background ,kabukicho-pink)
+               (ansi-color-bright-magenta :foreground ,kabukicho-pink
+                                          :background ,kabukicho-pink
+                                          :weight bold)
+               (ansi-color-red :foreground ,kabukicho-red :background ,kabukicho-red)
+               (ansi-color-bright-red :foreground ,kabukicho-red
+                                      :background ,kabukicho-red
+                                      :weight bold)
+               (ansi-color-white :foreground ,kabukicho-fg :background ,kabukicho-fg)
+               (ansi-color-bright-white :foreground "white" :background "white")
+               (ansi-color-yellow :foreground ,kabukicho-yellow :background ,kabukicho-yellow)
+               (ansi-color-bright-yellow :foreground ,kabukicho-yellow
+                                         :background ,kabukicho-yellow
+                                         :weight bold)
+               ;; bookmarks
+               (bookmark-face :foreground ,kabukicho-pink)
                ;; company
                (company-echo-common :foreground ,kabukicho-bg :background ,kabukicho-fg)
-               (company-preview :background ,kabukicho-current :foreground ,other-blue)
+               (company-preview :background ,kabukicho-current :foreground ,dark-blue)
                (company-preview-common :inherit company-preview
                                        :foreground ,kabukicho-pink)
                (company-preview-search :inherit company-preview
                                        :foreground ,kabukicho-green)
                (company-scrollbar-bg :background ,kabukicho-comment)
-               (company-scrollbar-fg :foreground ,other-blue)
+               (company-scrollbar-fg :foreground ,dark-blue)
                (company-tooltip :inherit tooltip)
                (company-tooltip-search :foreground ,kabukicho-green
                                        :underline t)
@@ -187,6 +227,18 @@ read it before opening a new issue about your will.")
                (completions-annotations :inherit font-lock-comment-face)
                (completions-common-part :foreground ,kabukicho-green)
                (completions-first-difference :foreground ,kabukicho-pink :weight bold)
+               ;; diff
+               ;;(diff-added :background ,dark-green :foreground ,kabukicho-fg :extend t)
+               ;;(diff-removed :background ,dark-red :foreground ,kabukicho-fg :extend t)
+               ;;(diff-refine-added :background ,kabukicho-green
+               ;;                   :foreground ,kabukicho-bg)
+               ;;(diff-refine-removed :background ,kabukicho-red
+               ;;                     :foreground ,kabukicho-fg)
+               ;;(diff-indicator-added :foreground ,kabukicho-green)
+               ;;(diff-indicator-removed :foreground ,kabukicho-red)
+               ;;(diff-indicator-changed :foreground ,kabukicho-orange)
+               ;;(diff-error :foreground ,kabukicho-red, :background ,kabukicho-bg
+               ;;            :weight bold)
                ;; diff-hl
                (diff-hl-change :foreground ,kabukicho-orange :background ,kabukicho-orange)
                (diff-hl-delete :foreground ,kabukicho-red :background ,kabukicho-red)
@@ -206,7 +258,7 @@ read it before opening a new issue about your will.")
                (diredp-date-time :foreground ,kabukicho-fg)
                (diredp-deletion-file-name :foreground ,kabukicho-pink :background ,kabukicho-current)
                (diredp-deletion :foreground ,kabukicho-pink :weight bold)
-               (diredp-dir-heading :foreground ,fg2 :background ,bg4)
+               (diredp-dir-heading :foreground ,fg2 :background ,bg3)
                (diredp-dir-name :inherit dired-directory)
                (diredp-dir-priv :inherit dired-directory)
                (diredp-executable-tag :foreground ,kabukicho-orange)
@@ -228,6 +280,19 @@ read it before opening a new issue about your will.")
                (diredp-link-priv :foreground ,kabukicho-orange)
                (diredp-autofile-name :foreground ,kabukicho-yellow)
                (diredp-tagged-autofile-name :foreground ,kabukicho-yellow)
+               ;; ediff
+               ;;(ediff-current-diff-A :background ,dark-red)
+               ;;(ediff-fine-diff-A :background ,kabukicho-red :foreground ,kabukicho-fg)
+               ;;(ediff-current-diff-B :background ,dark-green)
+               ;;(ediff-fine-diff-B :background ,kabukicho-green :foreground ,kabukicho-bg)
+               ;;(ediff-current-diff-C :background ,dark-blue)
+               ;;(ediff-fine-diff-C :background ,kabukicho-cyan :foreground ,kabukicho-bg)
+               ;; eglot
+               (eglot-diagnostic-tag-unnecessary-face :inherit warning)
+               (eglot-diagnostic-tag-deprecated-face :inherit warning :strike-through t)
+               ;; eldoc-box
+               (eldoc-box-border :background ,kabukicho-current)
+               (eldoc-box-body :background ,kabukicho-current)
                ;; elfeed
                (elfeed-search-date-face :foreground ,kabukicho-comment)
                (elfeed-search-title-face :foreground ,kabukicho-fg)
@@ -262,12 +327,31 @@ read it before opening a new issue about your will.")
                ;; flyspell
                (flyspell-duplicate :underline (:style wave :color ,kabukicho-orange))
                (flyspell-incorrect :underline (:style wave :color ,kabukicho-red))
-               ;; font-latex
+               ;; font-latex (auctex)
                (font-latex-bold-face :foreground ,kabukicho-purple)
                (font-latex-italic-face :foreground ,kabukicho-pink :slant italic)
                (font-latex-match-reference-keywords :foreground ,kabukicho-cyan)
                (font-latex-match-variable-keywords :foreground ,kabukicho-fg)
+               (font-latex-math-face :foreground ,kabukicho-orange)
+               (font-latex-script-char-face :inherit font-latex-math-face)
+               (font-latex-sectioning-0-face :foreground ,kabukicho-pink :weight bold
+                                             ,@(when kabukicho-enlarge-headings
+                                                 (list :height kabukicho-height-title-1)))
+               (font-latex-sectioning-1-face :foreground ,kabukicho-purple :weight bold
+                                             ,@(when kabukicho-enlarge-headings
+                                                 (list :height kabukicho-height-title-1)))
+               (font-latex-sectioning-2-face :foreground ,kabukicho-green :weight bold
+                                             ,@(when kabukicho-enlarge-headings
+                                                 (list :height kabukicho-height-title-2)))
+               (font-latex-sectioning-3-face :foreground ,kabukicho-yellow :weight bold
+                                             ,@(when kabukicho-enlarge-headings
+                                                 (list :height kabukicho-height-title-3)))
+               (font-latex-sectioning-4-face :foreground ,kabukicho-cyan :weight bold)
+               (font-latex-sectioning-5-face :foreground ,kabukicho-orange :weight bold)
+               (font-latex-sedate-face :foreground ,kabukicho-pink)
                (font-latex-string-face :foreground ,kabukicho-yellow)
+               (font-latex-verbatim-face :foreground ,kabukicho-orange)
+               (font-latex-warning-face :foreground ,kabukicho-red)
                ;; gemini
                (gemini-heading-face-1 :inherit bold :foreground ,kabukicho-pink
                                       ,@(when kabukicho-enlarge-headings
@@ -318,7 +402,7 @@ read it before opening a new issue about your will.")
                (gnus-summary-high-read :inherit gnus-summary-high-unread :weight normal)
                (gnus-summary-high-ancient :inherit gnus-summary-high-read)
                (gnus-summary-high-ticked :inherit gnus-summary-high-read :underline t)
-               (gnus-summary-normal-unread :foreground ,other-blue :weight bold)
+               (gnus-summary-normal-unread :foreground ,dark-blue :weight bold)
                (gnus-summary-normal-read :foreground ,kabukicho-comment :weight normal)
                (gnus-summary-normal-ancient :inherit gnus-summary-normal-read :weight light)
                (gnus-summary-normal-ticked :foreground ,kabukicho-pink :weight bold)
@@ -339,7 +423,7 @@ read it before opening a new issue about your will.")
                (helm-candidate-number :foreground ,kabukicho-bg :background ,kabukicho-fg)
                (helm-ff-directory :foreground ,kabukicho-green :background ,kabukicho-bg :weight bold)
                (helm-ff-dotted-directory :foreground ,kabukicho-green :background ,kabukicho-bg :weight normal)
-               (helm-ff-executable :foreground ,other-blue :background ,kabukicho-bg :weight normal)
+               (helm-ff-executable :foreground ,dark-blue :background ,kabukicho-bg :weight normal)
                (helm-ff-file :foreground ,kabukicho-fg :background ,kabukicho-bg :weight normal)
                (helm-ff-invalid-symlink :foreground ,kabukicho-pink :background ,kabukicho-bg :weight bold)
                (helm-ff-prefix :foreground ,kabukicho-bg :background ,kabukicho-pink :weight normal)
@@ -359,7 +443,7 @@ read it before opening a new issue about your will.")
                (helm-source-header :foreground ,kabukicho-pink :background ,kabukicho-bg :underline nil :weight bold)
                (helm-time-zone-current :foreground ,kabukicho-orange :background ,kabukicho-bg)
                (helm-time-zone-home :foreground ,kabukicho-purple :background ,kabukicho-bg)
-               (helm-visible-mark :foreground ,kabukicho-bg :background ,bg3)
+               (helm-visible-mark :foreground ,kabukicho-bg :background ,kabukicho-current)
                ;; highlight-indentation minor mode
                (highlight-indentation-face :background ,bg2)
                ;; icicle
@@ -391,7 +475,7 @@ read it before opening a new issue about your will.")
                (icicle-input-completion-fail :foreground ,kabukicho-pink)
                (icicle-historical-candidate-other :foreground ,kabukicho-fg)
                (icicle-historical-candidate :foreground ,kabukicho-fg)
-               (icicle-current-candidate-highlight :foreground ,kabukicho-orange :background ,bg3)
+               (icicle-current-candidate-highlight :foreground ,kabukicho-orange :background ,kabukicho-current)
                (icicle-Completions-instruction-2 :foreground ,fg4)
                (icicle-Completions-instruction-1 :foreground ,fg4)
                (icicle-completion :foreground ,kabukicho-fg)
@@ -446,7 +530,7 @@ read it before opening a new issue about your will.")
                (js2-external-variable :foreground ,kabukicho-purple)
                (js2-function-param :foreground ,kabukicho-cyan)
                (js2-jsdoc-html-tag-delimiter :foreground ,kabukicho-yellow)
-               (js2-jsdoc-html-tag-name :foreground ,other-blue)
+               (js2-jsdoc-html-tag-name :foreground ,dark-blue)
                (js2-jsdoc-value :foreground ,kabukicho-yellow)
                (js2-private-function-call :foreground ,kabukicho-cyan)
                (js2-private-member :foreground ,fg3)
@@ -463,12 +547,12 @@ read it before opening a new issue about your will.")
                (lsp-ui-peek-filename :foreground ,kabukicho-pink :weight bold)
                (lsp-ui-peek-line-number :foreground ,kabukicho-fg)
                (lsp-ui-peek-highlight :inherit highlight :distant-foreground ,kabukicho-bg)
-               (lsp-ui-peek-header :background ,bg3 :foreground ,fg3, :weight bold)
+               (lsp-ui-peek-header :background ,kabukicho-current :foreground ,fg3, :weight bold)
                (lsp-ui-peek-footer :inherit lsp-ui-peek-header)
                (lsp-ui-peek-selection :inherit match)
                (lsp-ui-sideline-symbol :foreground ,fg4 :box (:line-width -1 :color ,fg4) :height 0.99)
                (lsp-ui-sideline-current-symbol :foreground ,kabukicho-fg :weight ultra-bold
-                                               :box (:line-width -1 :color kabukicho-fg) :height 0.99)
+                                               :box (:line-width -1 :color ,kabukicho-fg) :height 0.99)
                (lsp-ui-sideline-code-action :foreground ,kabukicho-yellow)
                (lsp-ui-sideline-symbol-info :slant italic :height 0.99)
                (lsp-ui-doc-background :background ,kabukicho-bg)
@@ -476,49 +560,65 @@ read it before opening a new issue about your will.")
                ;; magit
                (magit-branch-local :foreground ,kabukicho-cyan)
                (magit-branch-remote :foreground ,kabukicho-green)
+               (magit-refname :foreground ,dark-blue)
                (magit-tag :foreground ,kabukicho-orange)
+               (magit-hash :foreground ,kabukicho-comment)
+               (magit-dimmed :foreground ,kabukicho-comment)
                (magit-section-heading :foreground ,kabukicho-pink :weight bold)
-               (magit-section-highlight :background ,bg3 :extend t)
-               (magit-diff-context-highlight :background ,bg3
-                                             :foreground ,fg3
-                                             :extend t)
+               (magit-section-highlight :background ,kabukicho-current :extend t)
+               (magit-diff-context :foreground ,fg3 :extend t)
+               (magit-diff-context-highlight :inherit magit-section-highlight
+                                             :foreground ,kabukicho-fg)
                (magit-diff-revision-summary :foreground ,kabukicho-orange
                                             :background ,kabukicho-bg
                                             :weight bold)
-               (magit-diff-revision-summary-highlight :foreground ,kabukicho-orange
-                                                      :background ,bg3
-                                                      :weight bold
-                                                      :extend t)
-               ;; the four following lines are just a patch of the
-               ;; upstream color to add the extend keyword.
-               (magit-diff-added :background "#335533"
-                                 :foreground "#ddffdd"
-                                 :extend t)
-               (magit-diff-added-highlight :background "#336633"
-                                           :foreground "#cceecc"
-                                           :extend t)
-               (magit-diff-removed :background "#553333"
-                                   :foreground "#ffdddd"
-                                   :extend t)
-               (magit-diff-removed-highlight :background "#663333"
-                                             :foreground "#eecccc"
-                                             :extend t)
+               (magit-diff-revision-summary-highlight :inherit magit-section-highlight
+                                                      :foreground ,kabukicho-orange
+                                                      :weight bold)
+               (magit-diff-added :background ,kabukicho-bg :foreground ,kabukicho-green)
+               (magit-diff-added-highlight :background ,kabukicho-current
+                                           :foreground ,kabukicho-green)
+               (magit-diff-removed :background ,kabukicho-bg :foreground ,kabukicho-red)
+               (magit-diff-removed-highlight :background ,kabukicho-current
+                                             :foreground ,kabukicho-red)
                (magit-diff-file-heading :foreground ,kabukicho-fg)
-               (magit-diff-file-heading-highlight :inherit magit-section-highlight)
+               (magit-diff-file-heading-highlight :inherit magit-section-highlight
+                                                  :weight bold)
+               (magit-diff-file-heading-selection
+                :inherit magit-diff-file-heading-highlight
+                :foreground ,kabukicho-pink)
+               (magit-diff-hunk-heading :inherit magit-diff-context
+                                        :background ,bg3)
+               (magit-diff-hunk-heading-highlight
+                :inherit magit-diff-context-highlight
+                :weight bold)
+               (magit-diff-hunk-heading-selection
+                :inherit magit-diff-hunk-heading-highlight
+                :foreground ,kabukicho-pink)
+               (magit-diff-lines-heading
+                :inherit magit-diff-hunk-heading-highlight
+                :foreground ,kabukicho-pink)
+               (magit-diff-lines-boundary :background ,kabukicho-pink)
                (magit-diffstat-added :foreground ,kabukicho-green)
                (magit-diffstat-removed :foreground ,kabukicho-red)
-               (magit-hash :foreground ,fg2)
-               (magit-hunk-heading :background ,bg3)
-               (magit-hunk-heading-highlight :background ,bg3)
-               (magit-item-highlight :background ,bg3)
-               (magit-log-author :foreground ,fg3)
+               (magit-log-author :foreground ,kabukicho-comment)
+               (magit-log-date :foreground ,kabukicho-comment)
+               (magit-log-graph :foreground ,kabukicho-yellow)
                (magit-process-ng :foreground ,kabukicho-orange :weight bold)
                (magit-process-ok :foreground ,kabukicho-green :weight bold)
+               (magit-signature-good :foreground ,kabukicho-green)
+               (magit-signature-bad :foreground ,kabukicho-red :weight bold)
+               (magit-signature-untrusted :foreground ,kabukicho-cyan)
+               (magit-signature-expired :foreground ,kabukicho-orange)
+               (magit-signature-revoked :foreground ,kabukicho-purple)
+               (magit-signature-error :foreground ,kabukicho-cyan)
+               (magit-cherry-unmatched :foreground ,kabukicho-cyan)
+               (magit-cherry-equivalent :foreground ,kabukicho-purple)
                ;; markdown
                (markdown-blockquote-face :foreground ,kabukicho-yellow
                                          :slant italic)
                (markdown-code-face :foreground ,kabukicho-orange)
-               (markdown-footnote-face :foreground ,other-blue)
+               (markdown-footnote-face :foreground ,dark-blue)
                (markdown-header-face :weight normal)
                (markdown-header-face-1
                 :inherit bold :foreground ,kabukicho-pink
@@ -535,7 +635,7 @@ read it before opening a new issue about your will.")
                (markdown-header-face-4 :foreground ,kabukicho-yellow)
                (markdown-header-face-5 :foreground ,kabukicho-cyan)
                (markdown-header-face-6 :foreground ,kabukicho-orange)
-               (markdown-header-face-7 :foreground ,other-blue)
+               (markdown-header-face-7 :foreground ,dark-blue)
                (markdown-header-face-8 :foreground ,kabukicho-fg)
                (markdown-inline-code-face :foreground ,kabukicho-green)
                (markdown-plain-url-face :inherit link)
@@ -558,17 +658,7 @@ read it before opening a new issue about your will.")
                (message-cited-text-3 :foreground ,kabukicho-comment)
                (message-cited-text-4 :foreground ,fg2)
                (message-mml :foreground ,kabukicho-green :weight normal)
-               ;; mode-line
-               (mode-line :background ,kabukicho-current
-                          :box ,kabukicho-current :inverse-video nil
-                          ,@(if kabukicho-alternate-mode-line-and-minibuffer
-                                (list :foreground fg3)
-                              (list :foreground kabukicho-fg)))
-               (mode-line-inactive
-                :background ,kabukicho-bg :inverse-video nil
-                ,@(if kabukicho-alternate-mode-line-and-minibuffer
-                      (list :foreground kabukicho-comment :box kabukicho-bg)
-                    (list :foreground fg4 :box bg2)))
+               ;; mini-modeline
                (mini-modeline-mode-line :inherit mode-line :height 0.1 :box nil)
                ;; mu4e
                (mu4e-unread-face :foreground ,kabukicho-pink :weight normal)
@@ -618,17 +708,17 @@ read it before opening a new issue about your will.")
                (org-agenda-structure :foreground ,kabukicho-purple)
                (org-block :foreground ,kabukicho-orange)
                (org-code :foreground ,kabukicho-green)
-               (org-column :background ,bg4)
+               (org-column :background ,bg3)
                (org-column-title :inherit org-column :weight bold :underline t)
                (org-date :foreground ,kabukicho-cyan :underline t)
-               (org-document-info :foreground ,other-blue)
+               (org-document-info :foreground ,dark-blue)
                (org-document-info-keyword :foreground ,kabukicho-comment)
                (org-document-title :weight bold :foreground ,kabukicho-orange
                                    ,@(when kabukicho-enlarge-headings
                                        (list :height kabukicho-height-doc-title)))
                (org-done :foreground ,kabukicho-green)
                (org-ellipsis :foreground ,kabukicho-comment)
-               (org-footnote :foreground ,other-blue)
+               (org-footnote :foreground ,dark-blue)
                (org-formula :foreground ,kabukicho-pink)
                (org-headline-done :foreground ,kabukicho-comment
                                   :weight normal :strike-through t)
@@ -645,7 +735,7 @@ read it before opening a new issue about your will.")
                (org-level-4 :weight normal :foreground ,kabukicho-yellow)
                (org-level-5 :weight normal :foreground ,kabukicho-cyan)
                (org-level-6 :weight normal :foreground ,kabukicho-orange)
-               (org-level-7 :weight normal :foreground ,other-blue)
+               (org-level-7 :weight normal :foreground ,dark-blue)
                (org-level-8 :weight normal :foreground ,kabukicho-fg)
                (org-link :foreground ,kabukicho-cyan :underline t)
                (org-priority :foreground ,kabukicho-cyan)
@@ -691,7 +781,7 @@ read it before opening a new issue about your will.")
                (rainbow-delimiters-depth-5-face :foreground ,kabukicho-orange)
                (rainbow-delimiters-depth-6-face :foreground ,kabukicho-green)
                (rainbow-delimiters-depth-7-face :foreground ,kabukicho-yellow)
-               (rainbow-delimiters-depth-8-face :foreground ,other-blue)
+               (rainbow-delimiters-depth-8-face :foreground ,dark-blue)
                (rainbow-delimiters-unmatched-face :foreground ,kabukicho-orange)
                ;; rpm-spec
                (rpm-spec-dir-face :foreground ,kabukicho-green)
@@ -710,7 +800,7 @@ read it before opening a new issue about your will.")
                (rst-level-4 :foreground ,kabukicho-yellow)
                (rst-level-5 :foreground ,kabukicho-cyan)
                (rst-level-6 :foreground ,kabukicho-orange)
-               (rst-level-7 :foreground ,other-blue)
+               (rst-level-7 :foreground ,dark-blue)
                (rst-level-8 :foreground ,kabukicho-fg)
                ;; selectrum-mode
                (selectrum-current-candidate :weight bold)
@@ -725,8 +815,17 @@ read it before opening a new issue about your will.")
                                  :weight bold)
                (show-paren-match-expression :inherit match)
                (show-paren-mismatch :inherit font-lock-warning-face)
+               ;; shr
+               (shr-h1 :foreground ,kabukicho-pink :weight bold :height 1.3)
+               (shr-h2 :foreground ,kabukicho-purple :weight bold)
+               (shr-h3 :foreground ,kabukicho-green :slant italic)
+               (shr-h4 :foreground ,kabukicho-yellow)
+               (shr-h5 :foreground ,kabukicho-cyan)
+               (shr-h6 :foreground ,kabukicho-orange)
                ;; slime
                (slime-repl-inputed-output-face :foreground ,kabukicho-purple)
+               ;; solaire-mode
+               (solaire-default-face :background ,bg2)
                ;; spam
                (spam :inherit gnus-summary-normal-read :foreground ,kabukicho-orange
                      :strike-through t :slant oblique)
@@ -741,20 +840,29 @@ read it before opening a new issue about your will.")
                                         :foreground ,kabukicho-fg
                                         :weight bold)
                ;; tab-bar & tab-line (since Emacs 27.1)
-               (tab-bar :foreground ,kabukicho-purple :background ,kabukicho-current
-                        :inherit variable-pitch)
+               (tab-bar :inherit variable-pitch
+                        :foreground ,kabukicho-purple
+                        :background ,kabukicho-current)
                (tab-bar-tab :foreground ,kabukicho-pink :background ,kabukicho-bg
                             :box (:line-width 2 :color ,kabukicho-bg :style nil))
                (tab-bar-tab-inactive :foreground ,kabukicho-purple :background ,bg2
                                      :box (:line-width 2 :color ,bg2 :style nil))
-               (tab-line :foreground ,kabukicho-purple :background ,kabukicho-current
-                         :height 0.9 :inherit variable-pitch)
-               (tab-line-tab :foreground ,kabukicho-pink :background ,kabukicho-bg
-                             :box (:line-width 2 :color ,kabukicho-bg :style nil))
-               (tab-line-tab-inactive :foreground ,kabukicho-purple :background ,bg2
-                                      :box (:line-width 2 :color ,bg2 :style nil))
-               (tab-line-tab-current :inherit tab-line-tab)
+               (tab-line :inherit variable-pitch
+                         :foreground ,kabukicho-purple
+                         :background ,kabukicho-current
+                         :height 0.92)
                (tab-line-close-highlight :foreground ,kabukicho-red)
+               (tab-line-highlight :weight bold)
+               (tab-line-tab :foreground ,kabukicho-purple :background ,bg2
+                             :box (:line-width 4 :color ,bg2 :style nil))
+               (tab-line-tab-current :foreground ,kabukicho-pink :background ,kabukicho-bg
+                                     :box (:line-width 4 :color ,kabukicho-bg :style nil)
+                                     :weight bold)
+               (tab-line-tab-group :background ,kabukicho-comment)
+               (tab-line-tab-inactive :inherit tab-line-tab)
+               (tab-line-tab-inactive-alternate :background ,bg3)
+               (tab-line-tab-modified :slant italic)
+               (tab-line-tab-special :foreground ,kabukicho-green)
                ;; telephone-line
                (telephone-line-accent-active :background ,kabukicho-bg :foreground ,kabukicho-pink)
                (telephone-line-accent-inactive :background ,bg2 :foreground ,kabukicho-purple)
@@ -769,6 +877,10 @@ read it before opening a new issue about your will.")
                (term-color-red :foreground ,kabukicho-red :background ,kabukicho-red)
                (term-color-white :foreground ,kabukicho-fg :background ,kabukicho-fg)
                (term-color-yellow :foreground ,kabukicho-yellow :background ,kabukicho-yellow)
+               ;; TeX (auctex)
+               (TeX-error-description-error :inherit error)
+               (TeX-error-description-tex-said :foreground ,kabukicho-cyan)
+               (TeX-error-description-warning :inherit warning)
                ;; tree-sitter
                (tree-sitter-hl-face:attribute :inherit font-lock-constant-face)
                (tree-sitter-hl-face:comment :inherit font-lock-comment-face)
@@ -829,7 +941,7 @@ read it before opening a new issue about your will.")
                ;; whitespace
                (whitespace-big-indent :background ,kabukicho-red :foreground ,kabukicho-red)
                (whitespace-empty :background ,kabukicho-orange :foreground ,kabukicho-red)
-               (whitespace-hspace :background ,bg3 :foreground ,kabukicho-comment)
+               (whitespace-hspace :background ,kabukicho-current :foreground ,kabukicho-comment)
                (whitespace-indentation :background ,kabukicho-orange :foreground ,kabukicho-red)
                (whitespace-line :background ,kabukicho-bg :foreground ,kabukicho-pink)
                (whitespace-newline :foreground ,kabukicho-comment)
@@ -864,24 +976,7 @@ read it before opening a new issue about your will.")
                       (t                       ; should be only tty-like envs
                        ,(funcall expand-with-func 'cadddr spec))))
                    whole-theme))
-           whole-theme))
-
-  (apply #'custom-theme-set-variables
-         'kabukicho
-         (let ((get-func
-                (pcase (display-color-cells)
-                  ((pred (<= 16777216)) 'car) ; fully graphical envs
-                  ((pred (<= 256)) 'cadr)     ; terminal withs 256 colors
-                  (_ 'caddr))))               ; should be only tty-like envs
-           `((ansi-color-names-vector
-              [,(funcall get-func (alist-get 'kabukicho-bg colors))
-               ,(funcall get-func (alist-get 'kabukicho-red colors))
-               ,(funcall get-func (alist-get 'kabukicho-green colors))
-               ,(funcall get-func (alist-get 'kabukicho-yellow colors))
-               ,(funcall get-func (alist-get 'kabukicho-comment colors))
-               ,(funcall get-func (alist-get 'kabukicho-purple colors))
-               ,(funcall get-func (alist-get 'kabukicho-cyan colors))
-               ,(funcall get-func (alist-get 'kabukicho-fg colors))])))))
+           whole-theme)))
 
 
 ;;;###autoload
