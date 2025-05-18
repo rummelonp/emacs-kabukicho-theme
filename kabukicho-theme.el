@@ -7,7 +7,7 @@
 
 ;; Maintainer: Kazuya Takeshima <rummelonp@gmail.com>
 ;; Author: film42
-;; Version: 1.2.0
+;; Version: 1.3.0
 ;; Package-Requires: ((emacs "25.1"))
 ;; URL: https://github.com/rummelonp/emacs-kabukicho-theme
 
