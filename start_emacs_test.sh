@@ -20,4 +20,4 @@ if [ -n "$COLOR" ]; then
 else
     echo "Run as a graphical window"
 fi
-$EMACS -Q --debug-init -L $(pwd) -l profile-test.el $ARGS
+$EMACS --debug-init -L $(pwd) -l profile-test.el $ARGS
